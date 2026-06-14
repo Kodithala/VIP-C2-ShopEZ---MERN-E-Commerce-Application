@@ -1,0 +1,15 @@
+{
+  "name": "shopez",
+  "private": true,
+  "scripts": {
+    "client": "npm --prefix client run dev",
+    "server": "npm --prefix server run dev",
+    "seed": "npm run seed:server",
+    "seed:server": "npm --prefix server run seed",
+    "seed:client": "npm --prefix client run seed",
+    "dev": "concurrently \"npm --prefix server run dev\" \"npm --prefix client run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

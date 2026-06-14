@@ -1,0 +1,26 @@
+{
+  "name": "shopez-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.3",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.0"
+  },
+  "devDependencies": {
+    "vite": "^5.3.1"
+  }
+}
