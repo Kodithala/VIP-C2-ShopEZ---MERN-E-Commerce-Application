@@ -15,23 +15,33 @@ await connectDB();
 
 const app = express();
 
+const normalizeOrigin = (origin) => origin?.replace(/\/$/, '');
+
 const allowedOrigins = [
   process.env.CLIENT_URL,
+  process.env.FRONTEND_URL,
+  ...(process.env.ALLOWED_ORIGINS?.split(',') || []),
+  'https://vip-c2-shop-ez-mern-e-commerce-appl.vercel.app',
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:5175',
   'http://localhost:5176'
-];
+]
+  .map((origin) => normalizeOrigin(origin?.trim()))
+  .filter(Boolean);
 
-app.use(cors({
+const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(normalizeOrigin(origin))) {
       return callback(null, true);
     }
     return callback(new Error(`CORS policy blocked origin: ${origin}`));
   },
   credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 app.get('/', (_req, res) => {
