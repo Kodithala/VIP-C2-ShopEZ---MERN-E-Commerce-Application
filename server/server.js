@@ -48,6 +48,13 @@ app.get('/', (_req, res) => {
   res.json({ message: 'ShopEZ API is running' });
 });
 
+app.get('/api/health', (_req, res) => {
+  res.json({
+    status: 'ok',
+    service: 'shopez-api'
+  });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
